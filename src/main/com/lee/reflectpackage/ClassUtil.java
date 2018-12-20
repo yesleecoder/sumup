@@ -1,5 +1,7 @@
 package main.com.lee.reflectpackage;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -9,6 +11,19 @@ public class ClassUtil {
 	 * 打印类的信息，包括类的成员函数、成员变量(只获取成员函数)
 	 * @param obj 该对象所属类的信息
 	 */
+	/*public static void print(Object obj){
+		Class c = obj.getClass();
+		Method[]  ms= c.getMethods();
+		for(Method m : ms){
+			System.out.println(m.getName());
+			System.out.println(m.getReturnType());
+			Class[] parmTypes = m.getParameterTypes();
+			for (Class param: parmTypes){
+				param.getName();
+			}
+		}
+	}*/
+
 	public static void printClassMethodMessage(Object obj){
 		//要获取类的信息  首先要获取类的类类型
 		Class c = obj.getClass();//传递的是哪个子类的对象  c就是该子类的类类型

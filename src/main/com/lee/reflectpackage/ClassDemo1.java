@@ -1,5 +1,9 @@
 package main.com.lee.reflectpackage;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
+// 这里还可以注意下类的调用问题　static 方法不能调用本类的非静态方法，非静态变量。 调用其他类是没有问题的。
+
 public class ClassDemo1 {
 	public static void main(String[] args) {
 		//Foo的实例对象如何表示
@@ -25,8 +29,9 @@ public class ClassDemo1 {
 
 		//第三种表达方式
 		Class c3 = null;
+
 		try {
-			c3 = Class.forName("com.imooc.reflect.Foo");
+			c3 = Class.forName("main.com.lee.reflectpackage.Foo");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,11 +50,9 @@ public class ClassDemo1 {
 			e.printStackTrace();
 		}
 
-
 	}
 }
 class Foo{
-
 	void print(){
 		System.out.println("foo");
 	}

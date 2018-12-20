@@ -12,6 +12,8 @@ public class ClassDemo2 {
 		System.out.println(c1.getName());
 		System.out.println(c2.getName());
 		System.out.println(c2.getSimpleName());//不包含包名的类的名称
+		System.out.println(c3.getName());
+		System.out.println(c4.getName()+"----"+c4.getSimpleName());
 		System.out.println(c5.getName());
 	}
 

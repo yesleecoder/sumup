@@ -3,6 +3,9 @@ package main.com.lee.reflectpackage;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+/**
+ * 　反射的方法绕过编译
+ */
 public class MethodDemo4 {
 	public static void main(String[] args) {
 		ArrayList list = new ArrayList();

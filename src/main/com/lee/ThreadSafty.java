@@ -14,6 +14,8 @@ import java.util.concurrent.CountDownLatch;
 　参考：　　https://blog.csdn.net/xiao__gui/article/details/8934832
      这里将 ArrayList 换成 Vector 则 线程安全 不会产生偏差
      注意这里的话是 每个线程同时对一个ArrayList进行操作　会出现线程不安全　如果这里每个线程都创建一个　ArrayList　则线程安全。
+
+     线程安全：用synchronized 修饰的类　同一时间，只有一个线程能够进入 这种类的一个实例 的去修改数据，进而保证了这个实例中的数据的安全(不会同时被多线程修改而变成脏数据)
  */
 
 public class ThreadSafty {
