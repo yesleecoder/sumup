@@ -15,6 +15,13 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.0.2.RELEASE" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.6.2" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.23" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.20" />
         </element>
       </element>
       <element id="directory" name="META-INF">
