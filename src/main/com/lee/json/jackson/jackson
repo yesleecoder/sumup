@@ -1,0 +1,47 @@
+jackson  是springboot 默认使用的json工具类。 优势
+ 在springboot中经常使用。方便对 bean 进行配置。输出json时，控制输出的json数据包含的bean元素。
+
+依赖    <!--  Jackson包 有三个 core databind annotations -->
+ 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+注解：
+   @JsonProperty("xxx"):  将当前的属性名在json字符串中重新命名为当前设置的这个值，比如在示例中，将age-->testa
+   @JsonIgnore    将被标注的属性在生成json字符串的时候，直接忽略
+   @JsonInclude  是一个类级别的设置，JsonInclude.Include.NON_EMPTY标识只有非NULL的值才会被纳入json string之中，其余的都被忽略，比如这里的location属性，并没有出现在最终的结果字符串中。
+关于其中使用的annotation的说明：
+    @JsonRootName(value="rootNode")   使用在类上，标注为该类在转换为json string的时候，需要新增一个根节点rootNode.
+   mapper.enable(SerializationFeature.WRAP_ROOT_VALUE)：  在mapper级别设置为使用root node方可输出根节点，否则根节点无效。
+
+
+方法：
+         * ObjectMapper是JSON操作的核心，Jackson的所有JSON操作都是在ObjectMapper中实现。
+         * ObjectMapper有多个JSON序列化的方法，可以把JSON字符串保存File、OutputStream等不同的介质中。
+         * writeValue(File arg0, Object arg1)把arg1转成json序列，并保存到arg0文件中。
+         * writeValue(OutputStream arg0, Object arg1)把arg1转成json序列，并保存到arg0输出流中。
+         * writeValueAsBytes(Object arg0)把arg0转成json序列，并把结果输出成字节数组。
+         * writeValueAsString(Object arg0)把arg0转成json序列，并把结果输出成字符串。
+
+总结：
+writevalue obj到json文本
+readvalue  json文本到obj
+
+参考：
+https://blog.csdn.net/blueheart20/article/details/52212221

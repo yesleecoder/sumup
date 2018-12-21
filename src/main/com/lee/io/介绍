@@ -1,0 +1,10 @@
+参考：
+https://www.cnblogs.com/ylspace/p/8128112.html
+
+要学会循环列出文件夹内容
+
+学会拷贝文件　使用FileInputStream/FileOutputStream 操作字节数组的方法最快
+
+最重要的是字符流和字节流的区别　　
+字节流应用更加广泛
+字符流只能对文本操作

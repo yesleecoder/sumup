@@ -1,0 +1,36 @@
+阿里　fastjson
+优点：　速度快
+
+pom.xml文件中加入依赖依赖：
+<dependency>
+	<groupId>com.alibaba</groupId>
+	<artifactId>fastjson</artifactId>
+	<version>1.1.23</version>
+</dependency>
+
+import com.alibaba.fastjson.JSON;
+
+public static final Object parse(String text); // 把JSON文本parse为JSONObject或者JSONArray
+public static final JSONObject parseObject(String text)； // 把JSON文本parse成JSONObject
+public static final <T> T parseObject(String text, Class<T> clazz); // 把JSON文本parse为JavaBean
+public static final JSONArray parseArray(String text); // 把JSON文本parse成JSONArray
+public static final <T> List<T> parseArray(String text, Class<T> clazz); //把JSON文本parse成JavaBean集合
+public static final String toJSONString(Object object); // 将JavaBean序列化为JSON文本
+public static final String toJSONString(Object object, boolean prettyFormat); // 将JavaBean序列化为带格式的JSON文本
+public static final Object toJSON(Object javaObject); 将JavaBean转换为JSONObject或者JSONArray
+
+//序列化：
+String jsonString = JSON.toJSONString(obj);
+//反序列化：
+VO vo = JSON.parseObject("...", VO.class);
+//泛型反序列化：
+import com.alibaba.fastjson.TypeReference;
+List<VO> list = JSON.parseObject("...", new TypeReference<List<VO>>() {});
+
+fastjson入口类是com.alibaba.fastjson.JSON，主要的API是JSON.toJSONString，和parseObject。
+
+总结：
+    parse　则是　文本转object
+    to  则是　object转文本
+
+    都是静态方法　所以直接　JSON.调用即可

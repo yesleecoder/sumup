@@ -1,0 +1,8 @@
+序列化介绍
+
+序列化　将对象转化成字节序列（字节数组），便于存储或者网络传输。  或者将对象转化为json。这里用到json工具包。比如fastjson
+ *  重要的两个类：
+ *  	序列化：ObjectOutputStream
+ *  	ObjectOutputStream	oos = new ObjectOutputStream(new FileOutputStream(file));　　oos.writeObject(stu)
+ *  	反序列化：ObjectInputStream
+ *  	ObjectInputStream ois = new ObjectInputStream( new FileInputStream(file)); Student stu = (Student)ois.readObject();

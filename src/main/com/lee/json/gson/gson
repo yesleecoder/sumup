@@ -1,0 +1,100 @@
+谷歌gson包
+
+Java对象和Json之间的互转，一般用的比较多的两个类库是Jackson和Gson，下面记录一下Gson的学习使用。
+
+基础概念：
+ Serialization:序列化，使Java对象到Json字符串的过程。
+ Deserialization：反序列化，字符串转换成Java对象
+
+使用Maven管理Gson，pom.xml导入gson的依赖
+  <dependency>
+     <groupId>com.google.code.gson</groupId>
+     <artifactId>gson</artifactId>
+     <version>2.3.1</version>
+  </dependency>
+
+Gson的两个基础方法
+toJson();
+fromJson();
+
+Gson的创建方式一：直接new Gson对象
+复制代码
+// 使用new方法
+Gson gson = new Gson();
+
+// toJson 将bean对象转换为json字符串
+String jsonStr = gson.toJson(user, User.class);
+
+// fromJson 将json字符串转为bean对象
+Student user= gson.fromJson(jsonStr, User.class);
+
+// **序列化List**
+String jsonStr2 = gson.toJson(list);
+
+// **反序列化成List时需要使用到TypeToken getType()**
+List<User> retList = gson.fromJson(jsonStr2,new TypeToken<List<User>>(){}.getType());
+复制代码
+
+
+Gson的创建方式二：使用GsonBuilder
+使用new Gson()，此时会创建一个带有默认配置选项的Gson实例，如果不想使用默认配置，那么就可以使用GsonBuilder。
+//serializeNulls()是GsonBuilder提供的一种配置，当字段值为空或null时，依然对该字段进行转换
+Gson gson = new GsonBuilder().serializeNulls().create();
+使用GsonBuilder创建Gson实例的步骤：
+首先创建GsonBuilder,然后调用GsonBuilder提供的各种配置方法进行配置，
+最后调用GsonBuilder的create方法，将基于当前的配置创建一个Gson实例。
+
+GsonBuilder的一些配置
+复制代码
+ Gson gson = new GsonBuilder()
+         .excludeFieldsWithoutExposeAnnotation() //不对没有用@Expose注解的属性进行操作
+         .enableComplexMapKeySerialization() //当Map的key为复杂对象时,需要开启该方法
+         .serializeNulls() //当字段值为空或null时，依然对该字段进行转换
+         .setDateFormat("yyyy-MM-dd HH:mm:ss:SSS") //时间转化为特定格式
+         .setPrettyPrinting() //对结果进行格式化，增加换行
+         .disableHtmlEscaping() //防止特殊字符出现乱码
+         .registerTypeAdapter(User.class,new UserAdapter()) //为某特定对象设置固定的序列或反序列方式，自定义Adapter需实现JsonSerializer或者JsonDeserializer接口
+         .create();
+复制代码
+例如：Gosn对复杂Map的处理时需要用到其中的 enableComplexMapKeySerialization() 配置：
+
+Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create(); //开启复杂处理Map方法
+Map<List<User>, String> map = new HashMap<List<User>, String>();
+// TODO 向map中添加数据
+String jsonStr = gson.toJson(map);  //toJson
+Map<List<User>, String> resultMap = gson.fromJson(jsonStr,new TypeToken<Map<List<User>, String>>() {}.getType()); //fromJson
+注意：如果Map的key为String，则可以不使用GsonBuilder的enableComplexMapKeySerialization()方法，或者直接new Gson();
+
+
+
+Gson的注解：
+@Expose注解
+复制代码
+public class User {
+  @Expose
+  private String firstName;
+
+  @Expose(serialize = false)
+  private String lastName;
+
+  @Expose(deserialize = false)
+  private String emailAddress;
+
+  private String password;
+}
+复制代码
+@Expose中serialize和deserialize属性是可选的，默认两个都为true。
+如果serialize为true，调用toJson时会序列化该属性，
+如果deserialize为true，调用fromJson生成Java对象时不会进行反序列化。
+注意：如果采用new Gson()方式创建Gson，@Expose没有任何效果。需要使用 gsonBuilder.excludeFieldsWithoutExposeAnnotation()方法。
+
+@SerializedName注解    能指定该字段在序列化成json时的名称
+  @SerializedName("w")
+  private int width;
+
+
+实际开发中我们会遇到比较复杂的Json，比如json中嵌套json数组，这个时候，就需要我们自定义序列化或反序列化方法了。
+待续未完....
+
+参考：
+http://www.jianshu.com/p/fc5c9cdf3aab

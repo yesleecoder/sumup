@@ -1,0 +1,6 @@
+推荐使用
+ 阿里的fastjson 优势：速度快
+ jackson  优势：springboot 默认使用 方便。
+不推荐使用：
+  谷歌原生的：
+  Gson

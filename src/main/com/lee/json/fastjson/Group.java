@@ -1,0 +1,24 @@
+/**
+ * Create by Intellij IDEA  2017.2
+ * Create by  lee
+ * Create at  2018/12/20 14:19
+ */
+package main.com.lee.json.fastjson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Group {
+    private Long id;
+    private String name;
+    private List<User> users = new ArrayList<User>();
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public List<User> getUsers() { return users; }
+    public void setUsers(List<User> users) { this.users = users; }
+}
